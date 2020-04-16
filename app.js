@@ -1,5 +1,5 @@
 const express = require('express');
-const sequelize = require('./db');
+require('./db');
 const app = express();
 
 app.get('/', (req, res) => {
