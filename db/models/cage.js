@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
   Cage.associate = function (models) {
-    // associations can be defined here
+    Cage.belongsTo(models.User);
   };
   return Cage;
 };
