@@ -18,16 +18,43 @@ app.use(
         cageNumber: String!
       }
 
+
+      input CageInput {
+        genotype: String!
+        cageNumber: String!
+      }
+
+
       type RootQuery {
         cages: [Cage!]!
       }
 
+      type RootMutation {
+        createCage(cageInput: CageInput): Cage
+      }
+
+      schema {
+        query: RootQuery
+        mutation: RootMutation
+      }
+    `),
     rootValue: {
       cages: () => {
         return Cage.findAll()
           .then((resp) => resp)
           .catch((err) => {
             console.log('Unable to fetch cages: ', err);
+            throw err;
+          });
+      },
+      createCage: (args) => {
+        return Cage.create({
+          genotype: args.cageInput.genotype,
+          cageNumber: args.cageInput.cageNumber,
+        })
+          .then((resp) => resp)
+          .catch((err) => {
+            console.log('Unable to create cages: ', err);
             throw err;
           });
       },
