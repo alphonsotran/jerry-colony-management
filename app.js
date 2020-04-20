@@ -67,8 +67,9 @@ app.use(
         return Cage.create({
           genotype: args.cageInput.genotype,
           cageNumber: args.cageInput.cageNumber,
+          userId: 1,
         })
-          .then((resp) => resp)
+          .then((cage) => cage)
           .catch((err) => {
             console.log('Unable to create cages: ', err);
             throw err;
