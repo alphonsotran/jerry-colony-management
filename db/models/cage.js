@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
   Cage.associate = function (models) {
-    Cage.belongsTo(models.User);
+    Cage.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Cage;
 };
