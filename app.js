@@ -75,8 +75,13 @@ app.use(
           });
       },
       createUser: (args) => {
-        return bcrypt
-          .hash(args.userInput.passwordHash, 12)
+        return User.findOne({ where: { email: args.userInput.email } })
+          .then((user) => {
+            if (user) {
+              throw new Error('User already exists.');
+            }
+            return bcrypt.hash(args.userInput.passwordHash, 12);
+          })
           .then((hashedPassword) =>
             User.create({
               firstName: args.userInput.firstName,
