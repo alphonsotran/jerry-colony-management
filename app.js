@@ -8,6 +8,16 @@ const User = require('./db/models').User;
 
 const app = express();
 
+const user = (userID) => {
+  return User.findOne({ where: { id: userID } })
+    .then((user) => {
+      return { ...user.dataValues, passwordHash: null, cages: user.getCages() };
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
 app.use(bodyParser.json());
 
 app.use(
