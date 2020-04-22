@@ -18,6 +18,7 @@ app.use(
         id: ID!
         genotype: String!
         cageNumber: String!
+        supervisor: User!
       }
 
       type User {
@@ -26,6 +27,7 @@ app.use(
         lastName: String!
         email: String!
         passwordHash: String
+        cages: [Cage!]!
       }
 
       input CageInput {
