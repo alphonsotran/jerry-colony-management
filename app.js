@@ -23,7 +23,7 @@ app.use(
       type User {
         id: ID!
         firstName: String!
-        lastname: String!
+        lastName: String!
         email: String!
         passwordHash: String
       }
