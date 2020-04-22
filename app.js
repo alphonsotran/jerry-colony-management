@@ -69,7 +69,14 @@ app.use(
     rootValue: {
       cages: () => {
         return Cage.findAll()
-          .then((resp) => resp)
+          .then((cages) => {
+            return cages.map((cage) => {
+              return {
+                ...cage.dataValues,
+                supervisor: user(cage.dataValues.userId),
+              };
+            });
+          })
           .catch((err) => {
             console.log('Unable to fetch cages: ', err);
             throw err;
