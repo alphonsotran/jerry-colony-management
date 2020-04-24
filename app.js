@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const graphQlHttp = require('express-graphql');
-const { buildSchema } = require('graphql');
 const bcrypt = require('bcrypt');
 const Cage = require('./db/models').Cage;
 const User = require('./db/models').User;
@@ -23,49 +22,8 @@ app.use(bodyParser.json());
 app.use(
   '/graphql',
   graphQlHttp({
-    schema: buildSchema(`
-      type Cage {
-        id: ID!
-        genotype: String!
-        cageNumber: String!
-        supervisor: User!
-      }
-
-      type User {
-        id: ID!
-        firstName: String!
-        lastName: String!
-        email: String!
-        passwordHash: String
-        cages: [Cage!]!
-      }
-
-      input CageInput {
-        genotype: String!
-        cageNumber: String!
-      }
-
-      input UserInput {
-        firstName: String!
-        lastName: String!
-        email: String!
-        passwordHash: String!
-      }
-
-      type RootQuery {
-        cages: [Cage!]!
-      }
-
-      type RootMutation {
-        createCage(cageInput: CageInput): Cage
-        createUser(userInput: UserInput): User
-      }
-
-      schema {
-        query: RootQuery
-        mutation: RootMutation
-      }
-    `),
+    schema: graphQlSchema,
+    rootValue: graphQlResolvers,
     rootValue: {
       cages: () => {
         return Cage.findAll()
