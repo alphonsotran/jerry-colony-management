@@ -1,10 +1,11 @@
 const resolvers = require('../../../graphql/resolvers/cage');
 const userFactory = require('../../factories/user');
 const Cage = require('../../../db/models').Cage;
-const User = require('../../../db/models').User;
 
 let user;
 beforeEach(async () => (user = await userFactory()));
+afterAll(() => Cage.sequelize.close());
+
 describe('Cage Resolvers', () => {
   test('creates a new cage', async () => {
     const cage = await Cage.create({
@@ -15,6 +16,5 @@ describe('Cage Resolvers', () => {
 
     expect.assertions(1);
     expect(cage.dataValues.genotype).toEqual('C56');
-    Cage.sequelize.close();
   });
 });
