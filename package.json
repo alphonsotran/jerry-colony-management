@@ -2,7 +2,11 @@
   "name": "jerry-colony-management",
   "jest": {
     "testPathIgnorePatterns": [
-      "./__tests__/factories"
+      "./__tests__/factories",
+      "./__tests__/config/suiteSetup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./__tests__/config/suiteSetup.js"
     ]
   },
   "version": "1.0.0",

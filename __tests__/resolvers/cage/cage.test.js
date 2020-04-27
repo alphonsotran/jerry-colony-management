@@ -4,7 +4,6 @@ const Cage = require('../../../db/models').Cage;
 
 let user;
 beforeEach(async () => (user = await userFactory()));
-afterAll(() => Cage.sequelize.close());
 
 describe('Cage Resolvers', () => {
   test('creates a new cage', async () => {
