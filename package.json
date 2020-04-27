@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "jest tests",
+    "pretest": "cd db && npx sequelize-cli db:migrate && cd ..",
     "start": "nodemon app.js",
-    "migrate": "cd db && npx sequelize-cli db:migrate && ..",
-    "undo migrate": "cd db && npx sequelize-cli db:migrate:undo && .."
+    "migrate": "cd db && npx sequelize-cli db:migrate && cd ..",
+    "undo migrate": "cd db && npx sequelize-cli db:migrate:undo && cd .."
   },
   "repository": {
     "type": "git",
