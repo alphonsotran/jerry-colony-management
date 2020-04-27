@@ -1,5 +1,10 @@
 {
   "name": "jerry-colony-management",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./__tests__/factories"
+    ]
+  },
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
