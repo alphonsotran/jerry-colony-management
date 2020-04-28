@@ -16,7 +16,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest tests",
+    "test": "jest tests --watch *.js",
     "pretest": "cd db && npx sequelize-cli db:migrate && cd ..",
     "start": "nodemon app.js",
     "migrate": "cd db && npx sequelize-cli db:migrate && cd ..",
