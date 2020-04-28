@@ -17,7 +17,8 @@ describe('Cage Resolvers', () => {
 
     const newCage = await resolvers.createCage(args);
 
-    expect.assertions(1);
+    expect.assertions(2);
     expect(newCage.dataValues.genotype).toEqual('C56');
+    expect(newCage.dataValues.cageNumber).toEqual('2345632');
   });
 });
